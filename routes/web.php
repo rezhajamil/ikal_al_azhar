@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MajorController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\ReplyCommentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,6 +39,11 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('faculty', FacultyController::class);
         Route::resource('major', MajorController::class);
         Route::resource('alumni', UserController::class);
+        Route::resource('news', NewsController::class);
+        Route::resource('comment', CommentController::class);
+        Route::resource('reply', ReplyCommentController::class);
+
+        Route::get('alumni/change_status', [UserController::class, 'change_status'])->name('alumni.change_status');
     });
 });
 

@@ -30,7 +30,7 @@
                     </div>
 
                     <div class="mx-5">
-                        <h4 class="text-2xl font-semibold text-gray-700">100</h4>
+                        <h4 class="text-2xl font-semibold text-gray-700">{{ $alumni }}</h4>
                         <div class="text-gray-500">Alumni Terdaftar</div>
                     </div>
                 </div>

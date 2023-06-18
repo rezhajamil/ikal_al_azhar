@@ -3,19 +3,17 @@
     <div class="w-full mx-4">
         <div class="flex flex-col">
             <div class="mt-4">
-                <a href="{{ route('admin.alumni.index') }}"
-                    class="inline-block px-3 py-2 mb-4 font-semibold text-white transition-all bg-gray-500 rounded-md hover:bg-gray-600"><i
-                        class="mr-2 fa-solid fa-arrow-left-long"></i>Kembali</a>
-                <h4 class="text-xl font-bold text-gray-600 align-baseline">Tambah Data Alumni</h4>
+                <h4 class="text-xl font-bold text-gray-600 align-baseline">Edit Data {{ $alumni->name }}</h4>
 
                 <div class="px-6 py-4 mx-auto overflow-auto bg-white rounded-md shadow sm:mx-0 w-fit">
-                    <form action="{{ route('admin.alumni.store') }}" method="POST" class="">
+                    <form action="{{ route('admin.alumni.update', $alumni->id) }}" method="POST" class="">
                         @csrf
+                        @method('put')
                         <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                             <div>
                                 <label class="text-gray-700" for="nim">NIM*</label>
                                 <input class="w-full rounded-md form-input focus:border-indigo-600" type="number"
-                                    name="nim" value="{{ old('nim') }}">
+                                    name="nim" value="{{ old('nim', $alumni->nim) }}">
                                 @error('nim')
                                     <span class="block mt-1 text-sm italic text-red-600">{{ $message }}</span>
                                 @enderror
@@ -23,7 +21,7 @@
                             <div>
                                 <label class="text-gray-700" for="email">Email*</label>
                                 <input class="w-full rounded-md form-input focus:border-indigo-600" type="email"
-                                    name="email" value="{{ old('email') }}">
+                                    name="email" value="{{ old('email', $alumni->email) }}">
                                 @error('email')
                                     <span class="block mt-1 text-sm italic text-red-600">{{ $message }}</span>
                                 @enderror
@@ -31,7 +29,7 @@
                             <div>
                                 <label class="text-gray-700" for="phone">Telepon*</label>
                                 <input class="w-full rounded-md form-input focus:border-indigo-600" type="number"
-                                    name="phone" value="{{ old('phone') }}">
+                                    name="phone" value="{{ old('phone', $alumni->phone) }}">
                                 @error('phone')
                                     <span class="block mt-1 text-sm italic text-red-600">{{ $message }}</span>
                                 @enderror
@@ -39,7 +37,7 @@
                             <div>
                                 <label class="text-gray-700" for="name">Nama Lengkap*</label>
                                 <input class="w-full rounded-md form-input focus:border-indigo-600" type="text"
-                                    name="name" value="{{ old('name') }}">
+                                    name="name" value="{{ old('name', $alumni->name) }}">
                                 @error('name')
                                     <span class="block mt-1 text-sm italic text-red-600">{{ $message }}</span>
                                 @enderror
@@ -48,10 +46,9 @@
                                 <label class="block text-gray-700" for="faculty">Fakultas*</label>
                                 <select name="faculty" id="faculty" class="w-full rounded-md">
                                     <option value="" selected disabled>Pilih Fakultas</option>
-
                                     @foreach ($faculty as $item)
                                         <option value="{{ $item->id }}"
-                                            {{ old('faculty') == $item->id ? 'selected' : '' }}>
+                                            {{ old('faculty', $alumni->faculty_id) == $item->id ? 'selected' : '' }}>
                                             {{ strtoupper($item->name) }}</option>
                                     @endforeach
                                 </select>
@@ -63,6 +60,11 @@
                                 <label class="block text-gray-700" for="major">Jurusan* </label>
                                 <select name="major" id="major" class="w-full rounded-md">
                                     <option value="" selected disabled>Pilih Jurusan</option>
+                                    @foreach ($majors as $item)
+                                        <option value="{{ $item->id }}"
+                                            {{ old('major', $alumni->major_id) == $item->id ? 'selected' : '' }}>
+                                            {{ strtoupper($item->name) }}</option>
+                                    @endforeach
                                 </select>
                                 @error('major')
                                     <span class="block mt-1 text-sm italic text-red-600">{{ $message }}</span>
@@ -71,7 +73,7 @@
                             <div>
                                 <label class="text-gray-700" for="year">Tahun Masuk*</label>
                                 <input class="w-full rounded-md form-input focus:border-indigo-600" type="date"
-                                    name="year" value="{{ old('year') }}">
+                                    name="year" value="{{ old('year', $alumni->year) . '-01-01' }}">
                                 @error('year')
                                     <span class="block mt-1 text-sm italic text-red-600">{{ $message }}</span>
                                 @enderror
@@ -79,7 +81,7 @@
                             <div>
                                 <label class="text-gray-700" for="job">Pekerjaan</label>
                                 <input class="w-full rounded-md form-input focus:border-indigo-600" type="text"
-                                    name="job" value="{{ old('job') }}">
+                                    name="job" value="{{ old('job', $alumni->job) }}">
                                 @error('job')
                                     <span class="block mt-1 text-sm italic text-red-600">{{ $message }}</span>
                                 @enderror
@@ -87,7 +89,7 @@
                             <div>
                                 <label class="text-gray-700" for="facebook">URL Facebook</label>
                                 <input class="w-full rounded-md form-input focus:border-indigo-600" type="url"
-                                    name="facebook" value="{{ old('facebook') }}">
+                                    name="facebook" value="{{ old('facebook', $alumni->facebook) }}">
                                 @error('facebook')
                                     <span class="block mt-1 text-sm italic text-red-600">{{ $message }}</span>
                                 @enderror
@@ -95,7 +97,7 @@
                             <div>
                                 <label class="text-gray-700" for="instagram">URL Instagram</label>
                                 <input class="w-full rounded-md form-input focus:border-indigo-600" type="url"
-                                    name="instagram" value="{{ old('instagram') }}">
+                                    name="instagram" value="{{ old('instagram', $alumni->instagram) }}">
                                 @error('instagram')
                                     <span class="block mt-1 text-sm italic text-red-600">{{ $message }}</span>
                                 @enderror
@@ -149,11 +151,10 @@
 
                     ,
                     success: (data) => {
-                        console.log(data);
                         $("#major").html(
                             data.map((item) => {
                                 return `
-                            <option value="${item.id}">${item.name}</option>
+                            <option value="${item.major}">${item.major}</option>
                             `
                             })
 

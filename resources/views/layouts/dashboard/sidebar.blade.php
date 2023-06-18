@@ -44,5 +44,12 @@
             <span class="mx-3 text-white select-none">Data Jurusan</span>
         </a>
 
+        <a href="{{ route('admin.news.index') }}"
+            class="flex items-center px-6 py-2 mt-4 text-white transition-all cursor-pointer hover:bg-emerald-800 hover:bg-opacity-25 hover:text-gray-100"
+            x-on:click="news=!news">
+            <i class="fa-solid fa-newspaper"></i>
+            <span class="mx-3 text-white select-none">Data Berita</span>
+        </a>
+
     </nav>
 </div>

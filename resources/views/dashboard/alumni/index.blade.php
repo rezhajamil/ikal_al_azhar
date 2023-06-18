@@ -10,13 +10,13 @@
                     <div class="flex flex-col">
                         <span class="font-bold text-gray-600">Berdasarkan</span>
                         <select name="search_by" id="search_by" class="rounded-lg">
-                            <option value="regional">Regional</option>
-                            <option value="branch">Branch</option>
-                            <option value="cluster">Cluster</option>
-                            <option value="tap">TAP</option>
-                            <option value="nama">Nama</option>
-                            <option value="telp">Telp</option>
-                            <option value="role">Role</option>
+                            <option value="faculty">Fakultas</option>
+                            <option value="major">Jurusan</option>
+                            <option value="name">Nama</option>
+                            <option value="nim">NIM</option>
+                            <option value="phone">Telp</option>
+                            <option value="email">Email</option>
+                            <option value="job">Pekerjaan</option>
                         </select>
                     </div>
                     <div class="flex flex-col">
@@ -43,25 +43,41 @@
                                 <th class="p-3 text-sm font-medium text-gray-100 uppercase bg-teal-600">Jurusan</th>
                                 <th class="p-3 text-sm font-medium text-gray-100 uppercase bg-teal-600">Nama</th>
                                 <th class="p-3 text-sm font-medium text-gray-100 uppercase bg-teal-600">NIM</th>
+                                <th class="p-3 text-sm font-medium text-gray-100 uppercase bg-teal-600">Telepon</th>
                                 <th class="p-3 text-sm font-medium text-gray-100 uppercase bg-teal-600">Email</th>
                                 <th class="p-3 text-sm font-medium text-gray-100 uppercase bg-teal-600">Tahun Lulus</th>
+                                <th class="p-3 text-sm font-medium text-gray-100 uppercase bg-teal-600">Pekerjaan</th>
+                                <th class="p-3 text-sm font-medium text-gray-100 uppercase bg-teal-600">Sosmed</th>
+                                <th class="p-3 text-sm font-medium text-gray-100 uppercase bg-teal-600">Status</th>
                                 <th class="p-3 text-sm font-medium text-gray-100 uppercase bg-teal-600">Action</th>
                             </tr>
                         </thead>
-                        {{-- <tbody>
-                            @foreach ($users as $key => $data)
+                        <tbody>
+                            @foreach ($alumni as $key => $data)
                                 <tr class="hover:bg-gray-200">
                                     <td class="p-3 font-bold text-gray-700 border-b">{{ $key + 1 }}</td>
-                                    <td class="p-3 text-gray-700 uppercase border-b regional">{{ $data->regional }}</td>
-                                    <td class="p-3 text-gray-700 uppercase border-b branch">{{ $data->branch }}</td>
-                                    <td class="p-3 text-gray-700 uppercase border-b cluster">{{ $data->cluster }}</td>
-                                    <td class="p-3 text-gray-700 uppercase border-b tap">{{ $data->tap }}</td>
-                                    <td class="p-3 text-gray-700 uppercase border-b nama">{{ $data->nama }}</td>
-                                    <td class="p-3 text-gray-700 border-b telp">{{ $data->telp }}</td>
-                                    <td class="p-3 text-gray-700 border-b digipos">{{ $data->id_digipos }}</td>
-                                    <td class="p-3 text-gray-700 border-b reff">{{ $data->reff_code }}</td>
-                                    <td class="p-3 text-gray-700 border-b la">{{ $data->link_aja }}</td>
-                                    <td class="p-3 text-gray-700 border-b role">{{ $data->role }}</td>
+                                    <td class="p-3 text-gray-700 uppercase border-b faculty">{{ $data->faculty->name }}</td>
+                                    <td class="p-3 text-gray-700 uppercase border-b major">{{ $data->major->name }}</td>
+                                    <td class="p-3 text-gray-700 border-b whitespace-nowrap name">{{ $data->name }}</td>
+                                    <td class="p-3 text-gray-700 uppercase border-b nim">{{ $data->nim }}</td>
+                                    <td class="p-3 text-gray-700 border-b phone">{{ $data->phone }}</td>
+                                    <td class="p-3 text-gray-700 border-b email">{{ $data->email }}</td>
+                                    <td class="p-3 text-gray-700 border-b year">{{ $data->year }}</td>
+                                    <td class="p-3 text-gray-700 border-b job">{{ $data->job }}</td>
+                                    <td class="p-3 text-gray-700 border-b ">
+                                        @if ($data->facebook)
+                                            <a href="{{ $data->facebook }}"
+                                                class="mr-2 text-xl text-blue-600 transition-all hover:text-blue-800"><i
+                                                    class="fa-brands fa-facebook"></i>
+                                            </a>
+                                        @endif
+                                        @if ($data->instagram)
+                                            <a href="{{ $data->instagram }}"
+                                                class="text-xl text-transparent transition-all bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 hover:text-purple-800"><i
+                                                    class="fa-brands fa-instagram"></i>
+                                            </a>
+                                        @endif
+                                    </td>
                                     <td class="p-3 text-gray-700 border-b">
                                         @if ($data->status)
                                             <div
@@ -78,11 +94,9 @@
                                         @endif
                                     </td>
                                     <td class="p-3 text-gray-700 border-b">
-                                        <a href="{{ route('direct_user.show', $data->id) }}"
-                                            class="block my-1 text-base font-semibold transition text-emerald-600 hover:text-emerald-800">Rapor</a>
-                                        <a href="{{ route('direct_user.edit', $data->id) }}"
-                                            class="block my-1 text-base font-semibold transition text-y_premier hover:text-indigo-800">Edit</a>
-                                        <form action="{{ route('direct_user.change_status', $data->id) }}" method="post">
+                                        <a href="{{ route('admin.alumni.edit', $data->id) }}"
+                                            class="block my-1 text-base font-semibold transition text-emerald-600 hover:text-emerald-800">Edit</a>
+                                        <form action="{{ route('admin.alumni.change_status', $data->id) }}" method="post">
                                             @csrf
                                             @method('put')
                                             <button
@@ -92,7 +106,7 @@
                                     </td>
                                 </tr>
                             @endforeach
-                        </tbody> --}}
+                        </tbody>
                     </table>
                 </div>
 
