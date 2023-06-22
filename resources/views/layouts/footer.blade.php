@@ -1,5 +1,5 @@
 <!-- ====== Footer Section Start -->
-<footer class="relative z-10 px-6 pt-20 pb-10 bg-white border-2 lg:pb-20">
+<footer class="relative z-10 px-6 pt-20 pb-10 mt-10 bg-white border-2 border-slate-300">
     <div class="container mx-auto">
         <div class="flex flex-wrap -mx-4">
             <div class="w-full px-4 sm:w-2/3 lg:w-3/12">
@@ -28,92 +28,36 @@
             </div>
             <div class="w-full px-4 sm:w-1/2 lg:w-2/12">
                 <div class="w-full mb-10">
-                    <h4 class="text-lg font-semibold mb-9 text-dark">Resources</h4>
+                    <h4 class="text-lg font-semibold mb-9 text-dark">Section</h4>
                     <ul>
                         <li>
-                            <a href="javascript:void(0)"
+                            <a href="#hero"
                                 class="inline-block mb-2 text-base leading-loose text-body-color hover:text-emerald-600">
-                                SaaS Development
+                                Home
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)"
+                            <a href="#sejarah"
                                 class="inline-block mb-2 text-base leading-loose text-body-color hover:text-emerald-600">
-                                Our Products
+                                Sejarah
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)"
+                            <a href="#profil"
                                 class="inline-block mb-2 text-base leading-loose text-body-color hover:text-emerald-600">
-                                User Flow
+                                Profil
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)"
+                            <a href="#struktur"
                                 class="inline-block mb-2 text-base leading-loose text-body-color hover:text-emerald-600">
-                                User Strategy
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="w-full px-4 sm:w-1/2 lg:w-2/12">
-                <div class="w-full mb-10">
-                    <h4 class="text-lg font-semibold mb-9 text-dark">Company</h4>
-                    <ul>
-                        <li>
-                            <a href="javascript:void(0)"
-                                class="inline-block mb-2 text-base leading-loose text-body-color hover:text-emerald-600">
-                                About TailGrids
+                                Struktur Organisasi
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)"
+                            <a href="#kontak"
                                 class="inline-block mb-2 text-base leading-loose text-body-color hover:text-emerald-600">
-                                Contact & Support
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)"
-                                class="inline-block mb-2 text-base leading-loose text-body-color hover:text-emerald-600">
-                                Success History
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)"
-                                class="inline-block mb-2 text-base leading-loose text-body-color hover:text-emerald-600">
-                                Setting & Privacy
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="w-full px-4 sm:w-1/2 lg:w-2/12">
-                <div class="w-full mb-10">
-                    <h4 class="text-lg font-semibold mb-9 text-dark">Quick Links</h4>
-                    <ul>
-                        <li>
-                            <a href="javascript:void(0)"
-                                class="inline-block mb-2 text-base leading-loose text-body-color hover:text-emerald-600">
-                                Premium Support
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)"
-                                class="inline-block mb-2 text-base leading-loose text-body-color hover:text-emerald-600">
-                                Our Services
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)"
-                                class="inline-block mb-2 text-base leading-loose text-body-color hover:text-emerald-600">
-                                Know Our Team
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)"
-                                class="inline-block mb-2 text-base leading-loose text-body-color hover:text-emerald-600">
-                                Download App
+                                Kontak
                             </a>
                         </li>
                     </ul>
@@ -121,7 +65,7 @@
             </div>
             <div class="w-full px-4 sm:w-1/2 lg:w-3/12">
                 <div class="w-full mb-10">
-                    <h4 class="text-lg font-semibold mb-9 text-dark">Follow Us On</h4>
+                    <h4 class="text-lg font-semibold mb-9 text-dark">Ikuti Kami</h4>
                     <div class="flex items-center mb-6">
                         <a href="javascript:void(0)"
                             class="mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5] text-dark hover:border-emerald-600 hover:bg-emerald-600 hover:text-white sm:mr-4 lg:mr-3 xl:mr-4">
@@ -152,7 +96,7 @@
                             </svg>
                         </a>
                     </div>
-                    <p class="text-base text-body-color">&copy; 2025 TailGrids</p>
+                    <p class="text-base text-body-color">&copy; {{ date('Y') }} Al-Azhar Centre Medan</p>
                 </div>
             </div>
         </div>
@@ -174,8 +118,7 @@
             </svg>
         </span>
         <span class="absolute top-10 right-10 z-[-1]">
-            <svg width="75" height="75" viewBox="0 0 75 75" fill="none"
-                xmlns="http://www.w3.org/2000/svg">
+            <svg width="75" height="75" viewBox="0 0 75 75" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                     d="M37.5 -1.63918e-06C58.2107 -2.54447e-06 75 16.7893 75 37.5C75 58.2107 58.2107 75 37.5 75C16.7893 75 -7.33885e-07 58.2107 -1.63918e-06 37.5C-2.54447e-06 16.7893 16.7893 -7.33885e-07 37.5 -1.63918e-06Z"
                     fill="url(#paint0_linear_1179_4)" />

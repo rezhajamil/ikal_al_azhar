@@ -40,8 +40,8 @@
 
     <!-- Go to Top Link -->
     <a href="#"
-        class="fixed bottom-0 right-0 z-20 flex items-center justify-center w-10 h-10 mb-5 mr-5 text-lg text-white duration-300 bg-blue-600 rounded-full back-to-top hover:bg-blue-400">
-        <i class="lni lni-arrow-up"></i>
+        class="fixed bottom-0 right-0 z-20 flex items-center justify-center w-10 h-10 mb-5 mr-5 text-lg text-white duration-300 bg-green-600 rounded-full back-to-top hover:bg-green-400">
+        <i class="fa-solid fa-arrow-up"></i>
     </a>
 
     <!-- Preloader -->

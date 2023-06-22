@@ -42,7 +42,7 @@
                             <li>
                                 <a href="#struktur"
                                     class="flex py-2 text-base font-medium text-dark hover:text-emerald-600 lg:ml-12 lg:inline-flex">
-                                    Struktur
+                                    Struktur Organisasi
                                 </a>
                             </li>
                             <li>
