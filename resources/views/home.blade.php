@@ -17,16 +17,16 @@
                             selama 4 tahun, resmi dilantik pada tanggal 15 Juli 2012 dan telah banyak mengalami perkembangan
                             seiring perjalanan waktu.
                         </p>
-                        <ul class="flex items-center">
+                        <ul class="flex flex-wrap items-center gap-y-3 gap-x-3">
                             <li>
                                 <a href="#sejarah"
-                                    class="inline-flex items-center justify-center px-3 py-3 text-base font-normal text-center text-white rounded-lg sm:py-4 bg-emerald-600 hover:bg-opacity-90 sm:px-10 lg:px-8 xl:px-10">
+                                    class="inline-flex items-center justify-center px-3 py-3 text-base font-normal text-center text-white rounded-lg whitespace-nowrap sm:py-4 bg-emerald-600 hover:bg-opacity-90 sm:px-10 lg:px-8 xl:px-10">
                                     Lebih Lengkap
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('register') }}"
-                                    class="inline-flex items-center justify-center px-3 py-4 text-base font-normal text-center text-gray-800 whitespace-nowrap hover:text-emerald-600 sm:px-10 lg:px-8 xl:px-10">
+                                    class="inline-flex items-center justify-center py-4 text-base font-normal text-center text-gray-800 whitespace-nowrap hover:text-emerald-600 sm:px-10 lg:px-8 xl:px-10">
                                     <i class="mr-2 text-lg fa-solid fa-circle-arrow-up text-emerald-600"></i>
                                     Upload Data Diri
                                 </a>
@@ -34,7 +34,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="w-full px-4 lg:w-6/12">
+                <div class="w-full sm:px-4 lg:w-6/12">
                     <div class="lg:ml-auto lg:text-right">
                         <div class="relative z-10 inline-block pt-11 lg:pt-0">
                             <img src="{{ asset('images/hero.png') }}" alt="hero"
@@ -343,7 +343,7 @@
                 </div>
             </div>
         </div>
-        <div class="flex flex-col justify-center w-full mt-6 sm:flex-row">
+        <div class="flex flex-col items-center justify-center w-full mt-6 sm:flex-row">
             <div
                 class="p-2 transition-all border-2 border-opacity-0 border-dashed rounded-lg w-60 h-60 group hover:border-opacity-100 border-emerald-600">
                 <div
