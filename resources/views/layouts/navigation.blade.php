@@ -54,13 +54,13 @@
                             <hr class="h-1">
                             <li>
                                 <a href="{{ route('login') }}"
-                                    class="flex py-2 text-base font-medium text-dark hover:text-emerald-600 lg:ml-12 lg:inline-flex">
+                                    class="flex py-2 text-base font-medium sm:hidden text-dark hover:text-emerald-600 lg:ml-12">
                                     Login
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('register') }}"
-                                    class="flex px-2 py-2 -mx-2 text-base font-medium text-white text-dark bg-emerald-600 lg:ml-12 lg:inline-flex">
+                                    class="flex px-2 py-2 -mx-2 text-base font-medium text-white sm:hidden text-dark bg-emerald-600 lg:ml-12">
                                     Register
                                 </a>
                             </li>
