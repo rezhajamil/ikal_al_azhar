@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Faculty;
+use App\Models\Major;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -100,6 +101,7 @@ class FacultyController extends Controller
      */
     public function destroy(Faculty $faculty)
     {
+        $majors = Major::where('faculty_id', $faculty->id)->delete();
         $faculty->delete();
 
         return redirect()->route('admin.faculty.index')->with('success', 'Berhasil Menghapus Fakultas ' . $faculty->name);

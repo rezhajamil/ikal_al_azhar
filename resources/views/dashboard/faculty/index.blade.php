@@ -29,12 +29,12 @@
                                     <td class="p-4 text-gray-700 border-b">
                                         <a href="{{ route('admin.faculty.edit', $data->id) }}"
                                             class="block my-1 text-base font-semibold transition text-emerald-600 hover:text-emerald-800">Edit</a>
-                                        {{-- <form action="{{ route('admin.faculty.destroy', $data->id) }}" method="post">
+                                        <form action="{{ route('admin.faculty.destroy', $data->id) }}" method="post">
                                             @csrf
                                             @method('delete')
                                             <button
                                                 class="block my-1 text-base font-semibold text-left text-red-600 transition hover:text-red-800">Hapus</button>
-                                        </form> --}}
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

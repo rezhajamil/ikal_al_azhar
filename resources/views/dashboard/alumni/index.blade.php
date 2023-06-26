@@ -54,14 +54,15 @@
                                 <th class="px-2 py-1 text-sm font-medium text-gray-100 uppercase bg-teal-600">Pekerjaan</th>
                                 <th class="px-2 py-1 text-sm font-medium text-gray-100 uppercase bg-teal-600 sosmed">Sosmed
                                 </th>
-                                <th class="px-2 py-1 text-sm font-medium text-gray-100 uppercase bg-teal-600">Status</th>
+                                <th class="px-2 py-1 text-sm font-medium text-gray-100 uppercase bg-teal-600 status">Status
+                                </th>
                                 <th class="px-2 py-1 text-sm font-medium text-gray-100 uppercase bg-teal-600 action">Action
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($alumni as $key => $data)
-                                <tr class="hover:bg-gray-200">
+                                <tr class="hover:bg-gray-200 {{ $data->status ? 'active' : 'inactive' }}">
                                     <td class="px-2 py-1 font-bold text-gray-700 border-b">{{ $key + 1 }}</td>
                                     <td class="px-2 py-1 text-gray-700 uppercase border-b faculty">
                                         {{ $data->faculty->name }}</td>
@@ -88,7 +89,7 @@
                                             </a>
                                         @endif
                                     </td>
-                                    <td class="px-2 py-1 text-gray-700 border-b">
+                                    <td class="px-2 py-1 text-gray-700 border-b status">
                                         @if ($data->status)
                                             <div
                                                 class="flex items-center justify-center px-3 py-1 rounded-full bg-green-200/50">
@@ -106,13 +107,16 @@
                                     <td class="px-2 py-1 text-gray-700 border-b action">
                                         <a href="{{ route('admin.alumni.edit', $data->id) }}"
                                             class="block my-1 text-base font-semibold transition text-emerald-600 hover:text-emerald-800">Edit</a>
-                                        <form action="{{ route('admin.alumni.change_status', $data->id) }}" method="post">
+                                        <a href="{{ route('admin.alumni.change_status', $data->id) }}"
+                                            class="block my-1 text-base font-semibold text-left text-red-600 transition hover:text-red-800 whitespace-nowrap">Ubah
+                                            Status</a>
+                                        {{-- <form action="{{ route('admin.alumni.change_status', $data->id) }}" method="post">
                                             @csrf
                                             @method('put')
-                                            <button
+                                            <button type="submit"
                                                 class="block my-1 text-base font-semibold text-left text-red-600 transition hover:text-red-800 whitespace-nowrap">Ubah
                                                 Status</button>
-                                        </form>
+                                        </form> --}}
                                     </td>
                                 </tr>
                             @endforeach
@@ -177,6 +181,8 @@
 
                 table.find('.action').remove();
                 table.find('.sosmed').remove();
+                table.find('.status').remove();
+                table.find('.inactive').remove();
                 createPDF(table[0].innerHTML)
             });
 

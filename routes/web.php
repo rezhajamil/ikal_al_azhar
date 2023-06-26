@@ -52,7 +52,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('alumni', UserController::class);
         Route::resource('news', NewsController::class);
 
-        Route::get('alumni/change_status', [UserController::class, 'change_status'])->name('alumni.change_status');
+        Route::get('alumni/change_status/{id}', [UserController::class, 'change_status'])->name('alumni.change_status');
     });
 });
 

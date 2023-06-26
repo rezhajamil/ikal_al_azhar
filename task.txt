@@ -2,6 +2,6 @@
 -   Komentar Berita *(done)*
 -   Manage Donasi *(cancel)*
 -   Jumlah Alumni (telp, url facebook,url instagram,pekerjaan,alamat,foto) *(done)*
--   Export Data Alumni to PDF *(on going)*
--   Kontak admin *(on going)*
+-   Export Data Alumni to PDF *(done)*
+-   Kontak admin *(done)*
 -   profil (visi,misi,struktur,sosmed) *(done)*

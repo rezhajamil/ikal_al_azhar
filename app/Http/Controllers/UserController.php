@@ -19,7 +19,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $alumni = User::with(['faculty', 'major'])->where('role', 'alumni')->where('status', 1)->orderBy('name')->get();
+        $alumni = User::with(['faculty', 'major'])->where('role', 'alumni')->orderBy('name')->get();
         // ddd($alumni);
 
         return view('dashboard.alumni.index', compact('alumni'));
@@ -175,6 +175,16 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function change_status($id)
+    {
+        $alumni = User::find($id);
+
+        $alumni->status = !$alumni->status;
+        $alumni->save();
+
+        return back();
     }
 
     public function edit_profile()
