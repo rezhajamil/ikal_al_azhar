@@ -1,5 +1,5 @@
 <!-- ====== Footer Section Start -->
-<footer class="relative z-10 px-6 pt-20 pb-10 mt-10 bg-white border-2 border-slate-300">
+<footer class="relative z-10 px-6 pt-20 pb-10 mt-10 bg-white border-2 border-emerald-300">
     <div class="container mx-auto">
         <div class="flex flex-wrap -mx-4">
             <div class="w-full px-4 sm:w-2/3 lg:w-3/12">

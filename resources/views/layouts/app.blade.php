@@ -36,7 +36,6 @@
     <!-- Hero Area Start -->
     <!-- Hero Area End -->
 
-    @include('layouts.footer')
 
     <!-- Go to Top Link -->
     <a href="#"

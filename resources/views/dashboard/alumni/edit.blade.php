@@ -6,9 +6,14 @@
                 <h4 class="text-xl font-bold text-gray-600 align-baseline">Edit Data {{ $alumni->name }}</h4>
 
                 <div class="px-6 py-4 mx-auto overflow-auto bg-white rounded-md shadow sm:mx-0 w-fit">
-                    <form action="{{ route('admin.alumni.update', $alumni->id) }}" method="POST" class="">
+                    <form action="{{ route('admin.alumni.update', $alumni->id) }}" method="POST" class=""
+                        enctype="multipart/form-data">
                         @csrf
                         @method('put')
+                        <div class="w-1/2">
+                            <img src="{{ asset('storage/' . $alumni->avatar) }}" alt="{{ $alumni->name }}-avatar"
+                                class="h-32">
+                        </div>
                         <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                             <div>
                                 <label class="text-gray-700" for="nim">NIM*</label>
@@ -79,10 +84,32 @@
                                 @enderror
                             </div>
                             <div>
+                                <label class="text-gray-700" for="address">Alamat</label>
+                                <input class="w-full rounded-md form-input focus:border-indigo-600" type="text"
+                                    name="address" value="{{ old('address', $alumni->address) }}">
+                                @error('address')
+                                    <span class="block mt-1 text-sm italic text-red-600">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div>
                                 <label class="text-gray-700" for="job">Pekerjaan</label>
                                 <input class="w-full rounded-md form-input focus:border-indigo-600" type="text"
                                     name="job" value="{{ old('job', $alumni->job) }}">
                                 @error('job')
+                                    <span class="block mt-1 text-sm italic text-red-600">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="flex items-center">
+                                <label
+                                    class="px-3 py-2 mt-6 font-bold text-white transition-all rounded bg-emerald-600 hover:bg-emerald-800"
+                                    for="avatar">
+                                    <i class="mr-2 fa-solid fa-images"></i>
+                                    <span id="file-name">Upload Foto</span>
+                                </label>
+                                <input class="hidden w-full rounded-md form-input focus:border-indigo-600" type="file"
+                                    name="avatar" value="{{ old('avatar') }}" id="avatar"
+                                    accept="image/jpg, image/png, image/gif, image/jpeg">
+                                @error('avatar')
                                     <span class="block mt-1 text-sm italic text-red-600">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -165,6 +192,12 @@
                     }
                 })
             })
+
+            $("#avatar").change(function(e) {
+
+                var fileName = e.target.files[0].name;
+                $('#file-name').text(fileName);
+            });
         })
     </script>
 @endsection

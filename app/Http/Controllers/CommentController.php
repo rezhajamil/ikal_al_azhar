@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
+use App\Models\News;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -34,7 +36,18 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'news_id' => ['required', 'numeric'],
+            'message' => ['required', 'string'],
+        ]);
+
+        $comment = Comment::create([
+            'news_id' => $request->news_id,
+            'user_id' => auth()->user()->id,
+            'message' => $request->message,
+        ]);
+
+        return back();
     }
 
     /**
@@ -79,6 +92,9 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $comment = Comment::find($id);
+        $comment->delete();
+
+        return back();
     }
 }

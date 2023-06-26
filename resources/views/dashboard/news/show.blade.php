@@ -30,15 +30,16 @@
                             <div
                                 class="flex justify-between w-full px-3 py-3 space-x-3 text-white rounded-t bg-teal-500/40">
                                 <div class="">
-                                    <span class="block text-xs">111 | Rezha Jamil Nasution</span>
-                                    <span class="block text-lg">Halo <br> Gaes</span>
+                                    <span class="block text-xs">{{ $comment->user->nim }} |
+                                        {{ $comment->user->name }}</span>
+                                    <span class="block text-lg">{{ $comment->message }}</span>
                                 </div>
-                                <form action="{{ route('admin.comment.destroy', $comment->id) }}" method="POST"
+                                <form action="{{ route('comment.destroy', $comment->id) }}" method="POST"
                                     class="flex items-center">
                                     @csrf
                                     @method('delete')
                                     <button type="submit"
-                                        class="px-2 py-2 font-bold text-white transition-all bg-red-700 rounded-md hover:bg-red-900">Hapus</button>
+                                        class="px-2 py-2 text-sm font-bold text-white transition-all bg-red-700 rounded-md hover:bg-red-900">Hapus</button>
                                 </form>
                             </div>
                         @endforeach

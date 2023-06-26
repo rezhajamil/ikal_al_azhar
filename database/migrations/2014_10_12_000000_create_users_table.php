@@ -23,9 +23,11 @@ class CreateUsersTable extends Migration
             $table->unsignedBigInteger('faculty_id')->nullable();
             $table->unsignedBigInteger('major_id')->nullable();
             $table->string('year')->nullable();
+            $table->string('address')->nullable();
             $table->string('facebook')->nullable();
             $table->string('instagram')->nullable();
             $table->string('job')->nullable();
+            $table->string('avatar')->nullable();
             $table->string('password');
             $table->string('role');
             $table->boolean('status')->default(1);

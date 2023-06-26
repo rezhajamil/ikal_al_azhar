@@ -35,7 +35,20 @@ class ReplyCommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'news_id' => ['required', 'numeric'],
+            'comment_id' => ['required', 'numeric'],
+            'message' => ['required', 'string'],
+        ]);
+
+        $reply = ReplyComment::create([
+            'news_id' => $request->news_id,
+            'comment_id' => $request->comment_id,
+            'user_id' => auth()->user()->id,
+            'message' => $request->message,
+        ]);
+
+        return back();
     }
 
     /**

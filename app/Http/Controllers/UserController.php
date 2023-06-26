@@ -6,6 +6,7 @@ use App\Models\Faculty;
 use App\Models\Major;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
 
@@ -51,28 +52,36 @@ class UserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'faculty' => ['required',],
             'major' => ['required',],
+            'address' => ['nullable', 'string'],
             'year' => ['required',],
             'job' => ['nullable', 'string', 'max:255'],
+            'avatar' => ['nullable', 'file', 'max:10240'],
             'facebook' => ['nullable', 'url'],
             'instagram' => ['nullable', 'url'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $user = User::create([
-            'nim' => $request->nim,
-            'name' => ucwords($request->name),
-            'phone' => $request->phone,
-            'email' => $request->email,
-            'faculty_id' => $request->faculty,
-            'major_id' => $request->major,
-            'year' => date('Y', strtotime($request->year)),
-            'job' => ucwords($request->job),
-            'facebook' => $request->facebook,
-            'instagram' => $request->instagram,
-            'role' => 'alumni',
-            'status' => 1,
-            'password' => bcrypt($request->password),
-        ]);
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->avatar->store('avatar');
+
+            $user = User::create([
+                'nim' => $request->nim,
+                'name' => ucwords($request->name),
+                'phone' => $request->phone,
+                'email' => $request->email,
+                'faculty_id' => $request->faculty,
+                'major_id' => $request->major,
+                'address' => ucwords($request->address),
+                'year' => date('Y', strtotime($request->year)),
+                'job' => ucwords($request->job),
+                'facebook' => $request->facebook,
+                'instagram' => $request->instagram,
+                'avatar' => $avatar,
+                'role' => 'alumni',
+                'status' => 1,
+                'password' => bcrypt($request->password),
+            ]);
+        }
 
         return redirect()->route('admin.alumni.index')->with('success', 'Berhasil Menambahkan Alumni');
     }
@@ -119,8 +128,10 @@ class UserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($id)],
             'faculty' => ['required',],
             'major' => ['required',],
+            'address' => ['nullable', 'string'],
             'year' => ['required',],
             'job' => ['nullable', 'string', 'max:255'],
+            'avatar' => ['nullable', 'file', 'max:10240'],
             'facebook' => ['nullable', 'url'],
             'instagram' => ['nullable', 'url'],
             'password' => ['nullable', 'confirmed', Rules\Password::defaults()],
@@ -134,9 +145,17 @@ class UserController extends Controller
         $user->faculty_id = $request->faculty;
         $user->major_id = $request->major;
         $user->year = date('Y', strtotime($request->year));
+        $user->address = ucwords($request->address);
         $user->job = ucwords($request->job);
         $user->facebook = $request->facebook;
         $user->instagram = $request->instagram;
+
+        if ($request->hasFile('avatar')) {
+            Storage::disk('public')->delete($user->avatar);
+            $avatar = $request->avatar->store('avatar');
+
+            $user->avatar = $avatar;
+        }
 
         if ($request->password) {
             $user->password = bcrypt($request->password);
@@ -156,5 +175,13 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function edit_profile($id)
+    {
+    }
+
+    public function update_profile($id)
+    {
     }
 }

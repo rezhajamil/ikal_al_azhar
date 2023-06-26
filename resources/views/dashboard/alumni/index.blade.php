@@ -66,13 +66,13 @@
                                     <td class="p-3 text-gray-700 border-b job">{{ $data->job }}</td>
                                     <td class="p-3 text-gray-700 border-b ">
                                         @if ($data->facebook)
-                                            <a href="{{ $data->facebook }}"
+                                            <a href="{{ $data->facebook }}" target="_blank"
                                                 class="mr-2 text-xl text-blue-600 transition-all hover:text-blue-800"><i
                                                     class="fa-brands fa-facebook"></i>
                                             </a>
                                         @endif
                                         @if ($data->instagram)
-                                            <a href="{{ $data->instagram }}"
+                                            <a href="{{ $data->instagram }}" target="_blank"
                                                 class="text-xl text-transparent transition-all bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 hover:text-purple-800"><i
                                                     class="fa-brands fa-instagram"></i>
                                             </a>
@@ -160,6 +160,7 @@
                 });
 
             }
+
         })
     </script>
 @endsection

@@ -28,54 +28,86 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#sejarah"
+                                <a href="{{ route('home') }}#sejarah"
                                     class="flex py-2 text-base font-medium text-dark hover:text-emerald-600 lg:ml-12 lg:inline-flex">
                                     Sejarah
                                 </a>
                             </li>
                             <li>
-                                <a href="#profil"
+                                <a href="{{ route('home') }}#profil"
                                     class="flex py-2 text-base font-medium text-dark hover:text-emerald-600 lg:ml-12 lg:inline-flex">
                                     Profil
                                 </a>
                             </li>
                             <li>
-                                <a href="#struktur"
+                                <a href="{{ route('home') }}#struktur"
                                     class="flex py-2 text-base font-medium text-dark hover:text-emerald-600 lg:ml-12 lg:inline-flex">
                                     Struktur Organisasi
                                 </a>
                             </li>
                             <li>
-                                <a href="#kontak"
+                                <a href="{{ route('news.list') }}"
+                                    class="flex py-2 text-base font-medium text-dark hover:text-emerald-600 lg:ml-12 lg:inline-flex">
+                                    Kegiatan
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('home') }}#kontak"
                                     class="flex py-2 text-base font-medium text-dark hover:text-emerald-600 lg:ml-12 lg:inline-flex">
                                     Kontak
                                 </a>
                             </li>
-                            <hr class="h-1">
-                            <li>
-                                <a href="{{ route('login') }}"
-                                    class="flex py-2 text-base font-medium sm:hidden text-dark hover:text-emerald-600 lg:ml-12">
-                                    Login
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('register') }}"
-                                    class="flex px-2 py-2 -mx-2 text-base font-medium text-white sm:hidden text-dark bg-emerald-600 lg:ml-12">
-                                    Register
-                                </a>
-                            </li>
+                            <hr class="h-2">
+                            @auth
+                                <li>
+                                    <a href="{{ route('edit_profile') }}"
+                                        class="flex py-2 text-base font-medium sm:hidden text-dark hover:text-emerald-600 lg:ml-12">
+                                        Edit Profile
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('logout') }}"
+                                        class="flex px-2 py-2 -mx-2 text-base font-medium text-white rounded sm:hidden text-dark bg-emerald-600 lg:ml-12">
+                                        Logout
+                                    </a>
+                                </li>
+                            @else
+                                <li>
+                                    <a href="{{ route('login') }}"
+                                        class="flex py-2 text-base font-medium sm:hidden text-dark hover:text-emerald-600 lg:ml-12">
+                                        Login
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('register') }}"
+                                        class="flex px-2 py-2 -mx-2 text-base font-medium text-white rounded sm:hidden text-dark bg-emerald-600 lg:ml-12">
+                                        Register
+                                    </a>
+                                </li>
+                            @endauth
                         </ul>
                     </nav>
                 </div>
                 <div class="justify-end hidden pr-16 sm:flex lg:pr-0">
-                    <a href="{{ route('login') }}"
-                        class="py-3 text-base font-medium px-7 text-dark hover:text-emerald-600">
-                        Login
-                    </a>
-                    <a href="{{ route('register') }}"
-                        class="py-3 text-base font-medium text-white rounded-lg bg-emerald-600 px-7 hover:bg-opacity-90">
-                        Register
-                    </a>
+                    @auth
+                        <a href="{{ route('edit_profile') }}"
+                            class="py-3 text-base font-medium px-7 text-dark hover:text-emerald-600">
+                            Edit Profile
+                        </a>
+                        <a href="{{ route('logout') }}"
+                            class="py-3 text-base font-medium text-white rounded-lg bg-emerald-600 px-7 hover:bg-opacity-90">
+                            Logout
+                        </a>
+                    @else
+                        <a href="{{ route('login') }}"
+                            class="py-3 text-base font-medium px-7 text-dark hover:text-emerald-600">
+                            Login
+                        </a>
+                        <a href="{{ route('register') }}"
+                            class="py-3 text-base font-medium text-white rounded-lg bg-emerald-600 px-7 hover:bg-opacity-90">
+                            Register
+                        </a>
+                    @endauth
                 </div>
             </div>
         </div>

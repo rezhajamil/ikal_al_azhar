@@ -4,6 +4,7 @@
     @include('section.sejarah')
     @include('section.profil')
     @include('section.team')
+    @include('section.news')
     <div class="flex flex-col items-center justify-center w-full mt-6 sm:flex-row">
         <div
             class="p-2 transition-all border-2 border-opacity-0 border-dashed rounded-lg w-60 h-60 group hover:border-opacity-100 border-emerald-600">
@@ -17,6 +18,7 @@
             </div>
         </div>
     </div>
+    @include('layouts.footer')
 @endsection
 @section('script')
     <script>

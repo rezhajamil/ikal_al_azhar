@@ -1,7 +1,7 @@
--   Manage Berita
--   Komentar Berita
--   Manage Donasi
--   Jumlah Alumni (telp, url facebook,url instagram,pekerjaan,alamat)
--   Export Data Alumni to PDF
--   Kontak admin
--   profil (visi,misi,struktur,sosmed)
+-   Manage Berita *(done)*
+-   Komentar Berita *(done)*
+-   Manage Donasi *(cancel)*
+-   Jumlah Alumni (telp, url facebook,url instagram,pekerjaan,alamat,foto) *(done)*
+-   Export Data Alumni to PDF *(on going)*
+-   Kontak admin *(on going)*
+-   profil (visi,misi,struktur,sosmed) *(done)*

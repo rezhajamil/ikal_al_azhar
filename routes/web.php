@@ -23,6 +23,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+Route::get('news/list', [NewsController::class, 'list'])->name('news.list');
+Route::get('news/detail/{news}', [NewsController::class, 'detail'])->name('news.detail');
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
@@ -34,14 +36,20 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('get_majors', [MajorController::class, 'get_majors'])->name('get_majors');
 
+    // Route::post('send_comment', [CommentController::class, 'send'])->name('comment.send');
+    // Route::post('send_reply', [ReplyCommentController::class, 'send'])->name('reply.send');
+    Route::resource('comment', CommentController::class);
+    Route::resource('reply', ReplyCommentController::class);
+
+    Route::get('edit_profile', [UserController::class, 'edit_profile'])->name('edit_profile');
+    Route::put('update_profile', [UserController::class, 'update_profile'])->name('update_profile');
+
     Route::middleware(['ensureRole:admin'])->prefix('admin')->name('admin.')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('faculty', FacultyController::class);
         Route::resource('major', MajorController::class);
         Route::resource('alumni', UserController::class);
         Route::resource('news', NewsController::class);
-        Route::resource('comment', CommentController::class);
-        Route::resource('reply', ReplyCommentController::class);
 
         Route::get('alumni/change_status', [UserController::class, 'change_status'])->name('alumni.change_status');
     });
