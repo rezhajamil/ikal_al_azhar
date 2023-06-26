@@ -22,13 +22,15 @@
                                 Lebih Lengkap
                             </a>
                         </li>
-                        <li>
-                            <a href="{{ route('register') }}"
-                                class="inline-flex items-center justify-center py-4 text-base font-normal text-center text-gray-800 whitespace-nowrap hover:text-emerald-600 sm:px-10 lg:px-8 xl:px-10">
-                                <i class="mr-2 text-lg fa-solid fa-circle-arrow-up text-emerald-600"></i>
-                                Upload Data Diri
-                            </a>
-                        </li>
+                        @if (!auth()->user())
+                            <li>
+                                <a href="{{ route('register') }}"
+                                    class="inline-flex items-center justify-center py-4 text-base font-normal text-center text-gray-800 whitespace-nowrap hover:text-emerald-600 sm:px-10 lg:px-8 xl:px-10">
+                                    <i class="mr-2 text-lg fa-solid fa-circle-arrow-up text-emerald-600"></i>
+                                    Upload Data Diri
+                                </a>
+                            </li>
+                        @endif
                     </ul>
                 </div>
             </div>

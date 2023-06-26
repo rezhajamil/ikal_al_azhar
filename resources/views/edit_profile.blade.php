@@ -19,24 +19,27 @@
                             <div
                                 class="relative flex flex-col min-w-0 break-words bg-transparent border-0 shadow-none lg:py4 rounded-2xl bg-clip-border">
                                 <div class="p-6 pb-0 mb-0">
-                                    <h4 class="font-bold">Register</h4>
-                                    <p class="mb-0">Buat Akun Anda</p>
+                                    <h4 class="font-bold">Edit Profile</h4>
+                                    <p class="mb-0">Ubah Data Akun Anda</p>
                                 </div>
                                 <div class="flex-auto p-6">
-                                    <form role="form" action="{{ route('register') }}" method="POST"
+                                    <img src="{{ asset('storage/' . $user->avatar) }}" alt=""
+                                        class="h-32 mb-2 rounded">
+                                    <form role="form" action="{{ route('update_profile') }}" method="POST"
                                         enctype="multipart/form-data" class="grid grid-cols-1 gap-3 sm:grid-cols-2">
                                         @csrf
+                                        @method('put')
                                         <div class="">
                                             <input type="number" placeholder="NIM*" name="nim"
-                                                value="{{ old('nim') }}"
-                                                class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding p-3 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none" />
+                                                value="{{ old('nim', $user->nim) }}" disabled
+                                                class="focus:shadow-primary-outline text-sm bg-gray-200 leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-clip-padding p-3 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none" />
                                             @error('nim')
                                                 <span class="text-sm text-red-600">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="">
                                             <input type="text" placeholder="Nama Lengkap*" name="name"
-                                                value="{{ old('name') }}"
+                                                value="{{ old('name', $user->name) }}"
                                                 class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding p-3 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none" />
                                             @error('name')
                                                 <span class="text-sm text-red-600">{{ $message }}</span>
@@ -44,15 +47,15 @@
                                         </div>
                                         <div class="">
                                             <input type="email" placeholder="Email*" name="email"
-                                                value="{{ old('email') }}"
-                                                class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding p-3 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none" />
+                                                value="{{ old('email', $user->email) }}" disabled
+                                                class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-gray-200 bg-clip-padding p-3 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none" />
                                             @error('email')
                                                 <span class="text-sm text-red-600">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="">
                                             <input type="number" placeholder="Nomor Telepon*" name="phone"
-                                                value="{{ old('phone') }}"
+                                                value="{{ old('phone', $user->phone) }}"
                                                 class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding p-3 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none" />
                                             @error('phone')
                                                 <span class="text-sm text-red-600">{{ $message }}</span>
@@ -63,7 +66,9 @@
                                                 class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding p-3 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none">
                                                 <option value="" selected disabled>Pilih Fakultas*</option>
                                                 @foreach ($faculty as $data)
-                                                    <option value="{{ $data->id }}">{{ $data->name }}</option>
+                                                    <option value="{{ $data->id }}"
+                                                        {{ old('faculty', $user->faculty_id) ? 'selected' : '' }}>
+                                                        {{ $data->name }}</option>
                                                 @endforeach
                                             </select>
                                             @error('faculty')
@@ -74,6 +79,11 @@
                                             <select name="major" id="major"
                                                 class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding p-3 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none">
                                                 <option value="" selected disabled>Pilih Jurusan*</option>
+                                                @foreach ($majors as $data)
+                                                    <option value="{{ $data->id }}"
+                                                        {{ old('major', $user->major_id) ? 'selected' : '' }}>
+                                                        {{ $data->name }}</option>
+                                                @endforeach
                                             </select>
                                             @error('major')
                                                 <span class="text-sm text-red-600">{{ $message }}</span>
@@ -81,7 +91,7 @@
                                         </div>
                                         <div class="">
                                             <input type="date" placeholder="Tahun Masuk" name="year"
-                                                value="{{ old('year') }}"
+                                                value="{{ old('year', $user->year) . '-01-01' }}"
                                                 class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding p-3 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none" />
                                             <span class="text-sm text-slate-400">Tahun Masuk*</span>
                                             @error('year')
@@ -90,7 +100,7 @@
                                         </div>
                                         <div class="">
                                             <input type="text" placeholder="Alamat*" name="address"
-                                                value="{{ old('address') }}"
+                                                value="{{ old('address', $user->address) }}"
                                                 class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding p-3 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none" />
                                             @error('address')
                                                 <span class="text-sm text-red-600">{{ $message }}</span>
@@ -98,7 +108,7 @@
                                         </div>
                                         <div class="">
                                             <input type="text" placeholder="Pekerjaan*" name="job"
-                                                value="{{ old('job') }}"
+                                                value="{{ old('job', $user->job) }}"
                                                 class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding p-3 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none" />
                                             @error('job')
                                                 <span class="text-sm text-red-600">{{ $message }}</span>
@@ -115,12 +125,13 @@
                                                 type="file" name="avatar" value="{{ old('avatar') }}" id="avatar"
                                                 accept="image/jpg, image/png, image/gif, image/jpeg">
                                             @error('avatar')
-                                                <span class="block mt-1 text-sm italic text-red-600">{{ $message }}</span>
+                                                <span
+                                                    class="block mt-1 text-sm italic text-red-600">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="">
                                             <input type="url" placeholder="URL Akun Facebook" name="facebook"
-                                                value="{{ old('facebook') }}"
+                                                value="{{ old('facebook', $user->facebook) }}"
                                                 class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding p-3 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none" />
                                             @error('facebook')
                                                 <span class="text-sm text-red-600">{{ $message }}</span>
@@ -128,7 +139,7 @@
                                         </div>
                                         <div class="">
                                             <input type="url" placeholder="URL Akun Instagram" name="instagram"
-                                                value="{{ old('instagram') }}"
+                                                value="{{ old('instagram', $user->instagram) }}"
                                                 class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding p-3 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none" />
                                             @error('instagram')
                                                 <span class="text-sm text-red-600">{{ $message }}</span>
@@ -152,17 +163,9 @@
                                         </div>
                                         <div class="text-center col-span-full">
                                             <button type="submit"
-                                                class="inline-block w-full px-16 py-3.5 mt-6 mb-0 uppercase font-bold leading-normal text-center text-white align-middle transition-all !bg-emerald-700 hover:bg-emerald-800  border-0 rounded-lg cursor-pointer hover:-translate-y-px active:opacity-85 hover:shadow-xs text-sm ease-in tracking-tight-rem shadow-md bg-150 bg-x-25">Daftar</button>
+                                                class="inline-block w-full px-16 py-3.5 mt-6 mb-0 uppercase font-bold leading-normal text-center text-white align-middle transition-all !bg-emerald-700 hover:bg-emerald-800  border-0 rounded-lg cursor-pointer hover:-translate-y-px active:opacity-85 hover:shadow-xs text-sm ease-in tracking-tight-rem shadow-md bg-150 bg-x-25">Simpan</button>
                                         </div>
                                     </form>
-                                </div>
-                                <div
-                                    class="border-black/12.5 rounded-b-2xl border-t-0 border-solid p-6 text-center pt-0 px-1 sm:px-6">
-                                    <p class="mx-auto mb-6 text-sm leading-normal">Sudah Punya Akun? <a
-                                            href="{{ route('login') }}"
-                                            class="font-semibold text-transparent bg-clip-text bg-gradient-to-tl from-green-600 to-green-800">Sign
-                                            In</a>
-                                    </p>
                                 </div>
                             </div>
                         </div>

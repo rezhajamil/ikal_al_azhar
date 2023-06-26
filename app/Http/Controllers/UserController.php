@@ -177,11 +177,58 @@ class UserController extends Controller
         //
     }
 
-    public function edit_profile($id)
+    public function edit_profile()
     {
+        $user = User::find(auth()->user()->id);
+
+        $faculty = Faculty::orderBy('name')->get();
+        $majors = Major::where('faculty_id', $user->faculty_id)->get();
+
+        return view('edit_profile', compact('user', 'faculty', 'majors'));
     }
 
-    public function update_profile($id)
+    public function update_profile(Request $request)
     {
+        $user = User::find(auth()->user()->id);
+
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'numeric', Rule::unique('users')->ignore($user->id)],
+            'faculty' => ['required',],
+            'major' => ['required',],
+            'address' => ['nullable', 'string'],
+            'year' => ['required',],
+            'job' => ['nullable', 'string', 'max:255'],
+            'avatar' => ['nullable', 'file', 'max:10240'],
+            'facebook' => ['nullable', 'url'],
+            'instagram' => ['nullable', 'url'],
+            'password' => ['nullable', 'confirmed', Rules\Password::defaults()],
+        ]);
+
+
+        $user->name = ucwords($request->name);
+        $user->phone = $request->phone;
+        $user->faculty_id = $request->faculty;
+        $user->major_id = $request->major;
+        $user->year = date('Y', strtotime($request->year));
+        $user->address = ucwords($request->address);
+        $user->job = ucwords($request->job);
+        $user->facebook = $request->facebook;
+        $user->instagram = $request->instagram;
+
+        if ($request->hasFile('avatar')) {
+            Storage::disk('public')->delete($user->avatar);
+            $avatar = $request->avatar->store('avatar');
+
+            $user->avatar = $avatar;
+        }
+
+        if ($request->password) {
+            $user->password = bcrypt($request->password);
+        }
+
+        $user->save();
+
+        return redirect()->route('home');
     }
 }

@@ -29,12 +29,13 @@ Route::get('news/detail/{news}', [NewsController::class, 'detail'])->name('news.
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
 
+Route::get('get_majors', [MajorController::class, 'get_majors'])->name('get_majors');
+
 Route::middleware(['auth'])->group(function () {
     Route::get('dashboard', function () {
         return redirect()->route('admin.dashboard');
     })->name('dashboard');
 
-    Route::get('get_majors', [MajorController::class, 'get_majors'])->name('get_majors');
 
     // Route::post('send_comment', [CommentController::class, 'send'])->name('comment.send');
     // Route::post('send_reply', [ReplyCommentController::class, 'send'])->name('reply.send');

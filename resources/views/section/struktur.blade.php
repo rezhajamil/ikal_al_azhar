@@ -1,5 +1,5 @@
 <!-- ====== Team Section Start -->
-<section class="pt-20 pb-10 lg:pt-[120px] lg:pb-20">
+<section id="struktur" class="pt-12 pb-10 ">
     <div class="container mx-auto">
         <div class="flex flex-wrap -mx-4">
             <div class="w-full px-4">
