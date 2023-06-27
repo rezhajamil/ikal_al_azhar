@@ -3,7 +3,7 @@
     <div class="w-full mx-4">
         <div class="flex flex-col">
             <div class="mt-4">
-                <h4 class="text-xl font-bold text-gray-600 align-baseline">Tambah Data Fakultas</h4>
+                <h4 class="text-xl font-bold text-gray-600 align-baseline">Tambah Data Berita</h4>
 
                 <div class="px-6 py-4 mx-auto overflow-auto bg-white rounded-md shadow sm:mx-0 w-fit sm:w-1/2">
                     <form action="{{ route('admin.news.store') }}" method="POST" class="" enctype="multipart/form-data">
