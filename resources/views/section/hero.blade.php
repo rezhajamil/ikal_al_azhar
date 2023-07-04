@@ -22,7 +22,7 @@
                                 Lebih Lengkap
                             </a>
                         </li>
-                        @if (!auth()->user())
+                        {{-- @if (!auth()->user())
                             <li>
                                 <a href="{{ route('register') }}"
                                     class="inline-flex items-center justify-center py-4 text-base font-normal text-center text-gray-800 whitespace-nowrap hover:text-emerald-600 sm:px-10 lg:px-8 xl:px-10">
@@ -30,7 +30,7 @@
                                     Upload Data Diri
                                 </a>
                             </li>
-                        @endif
+                        @endif --}}
                     </ul>
                 </div>
             </div>
