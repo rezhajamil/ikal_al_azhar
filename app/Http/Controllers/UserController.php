@@ -63,25 +63,27 @@ class UserController extends Controller
 
         if ($request->hasFile('avatar')) {
             $avatar = $request->avatar->store('avatar');
-
-            $user = User::create([
-                'nim' => $request->nim,
-                'name' => ucwords($request->name),
-                'phone' => $request->phone,
-                'email' => $request->email,
-                'faculty_id' => $request->faculty,
-                'major_id' => $request->major,
-                'address' => ucwords($request->address),
-                'year' => date('Y', strtotime($request->year)),
-                'job' => ucwords($request->job),
-                'facebook' => $request->facebook,
-                'instagram' => $request->instagram,
-                'avatar' => $avatar,
-                'role' => 'alumni',
-                'status' => 1,
-                'password' => bcrypt($request->password),
-            ]);
+        } else {
+            $avatar = '';
         }
+
+        $user = User::create([
+            'nim' => $request->nim,
+            'name' => ucwords($request->name),
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'faculty_id' => $request->faculty,
+            'major_id' => $request->major,
+            'address' => ucwords($request->address),
+            'year' => date('Y', strtotime($request->year)),
+            'job' => ucwords($request->job),
+            'facebook' => $request->facebook,
+            'instagram' => $request->instagram,
+            'avatar' => $avatar,
+            'role' => 'alumni',
+            'status' => 1,
+            'password' => bcrypt($request->password),
+        ]);
 
         return redirect()->route('admin.alumni.index')->with('success', 'Berhasil Menambahkan Alumni');
     }

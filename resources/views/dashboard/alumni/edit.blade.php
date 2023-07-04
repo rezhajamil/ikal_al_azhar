@@ -11,8 +11,8 @@
                         @csrf
                         @method('put')
                         <div class="w-1/2">
-                            <img src="{{ asset('storage/' . $alumni->avatar) }}" alt="{{ $alumni->name }}-avatar"
-                                class="h-32">
+                            <img src="{{ $alumni->avatar ? asset('storage/' . $alumni->avatar) : asset('images/profile.png') }}"
+                                alt="{{ $alumni->name }}-avatar" class="h-32">
                         </div>
                         <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                             <div>
