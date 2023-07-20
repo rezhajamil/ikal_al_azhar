@@ -1007,6 +1007,9 @@ select{
 .h-\[2px\]{
   height: 2px;
 }
+.h-\[450px\]{
+  height: 450px;
+}
 .h-fit{
   height: -moz-fit-content;
   height: fit-content;
@@ -1016,9 +1019,6 @@ select{
 }
 .h-screen{
   height: 100vh;
-}
-.h-\[450px\]{
-  height: 450px;
 }
 .max-h-96{
   max-height: 24rem;
