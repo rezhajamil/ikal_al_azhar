@@ -301,7 +301,7 @@
                 <div class="mx-auto mb-10 w-full max-w-[370px]">
                     <div class="relative overflow-hidden rounded-lg">
                         <img src="{{ asset('images/sekjen.jpeg') }}" alt="image"
-                            class="object-cover w-full h-[450px]" />
+                            class="object-cover object-top w-full h-[450px]" />
                         <div class="absolute left-0 w-full text-center bottom-5">
                             <div class="relative px-3 py-5 mx-5 overflow-hidden bg-white rounded-lg">
                                 <h3 class="text-sm font-semibold text-dark">
